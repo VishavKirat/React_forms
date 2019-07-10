@@ -1,11 +1,12 @@
 import React from 'react';
 import Form from './Forms';
+import {connect} from 'react-redux'
 
 class App extends React.Component {
   state = {}
   handleSubmitButon = (e)=>{
     e.preventDefault();
-    console.log(this.state)
+    this.props.addingDetails(this.state);
   }
   handleInput = (e)=>{
     this.setState({
@@ -16,9 +17,25 @@ class App extends React.Component {
     return (
       <div className="App">
         <Form handleInput={this.handleInput} handleSubmitButon = {this.handleSubmitButon}/>
+        {this.props.name && <div className="details container col center">
+          <p >Name: {this.props.name}</p>
+          <p >Phone: {this.props.phone}</p>
+        </div>}
       </div>
       );
   }
 }
-
-export default (App);
+const mapStateToProps = (state)=>{
+  return (
+    {
+      name: state.name,
+      phone: state.phone
+    }
+  )
+}
+const mapDispatchToProps = (dispatch)=>(
+  {
+    addingDetails :(details)=> dispatch({type:'ADDINGDETAILS',details})
+  }
+)
+export default connect(mapStateToProps,mapDispatchToProps)(App);

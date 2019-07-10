@@ -9,7 +9,7 @@ const Forms = (props)=>{
                 <input type="text" id='name' onChange={props.handleInput}/>
             </label>
             <label htmlFor="phone" className='col s12' style={style}>Phone
-                <input type="text" id='phone' onChange={props.handleInput}/>
+                <input type="text" id='phone' onChange={props.handleInput} autoComplete/>
             </label>
             <button type='submit' style={style} className='btn green waves-effect waves-green-lighten-3 col s6 offset-s3' onClick={props.handleSubmitButon}>Submit</button>
          </form>
