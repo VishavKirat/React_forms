@@ -2,16 +2,20 @@ import React from 'react';
 import Form from './Forms';
 
 class App extends React.Component {
-  handleInputRead = (e) =>{
-    e.preventDefault()
-  } 
+  state = {}
   handleSubmitButon = (e)=>{
     e.preventDefault();
+    console.log(this.state)
+  }
+  handleInput = (e)=>{
+    this.setState({
+      [e.target.id]: e.target.value
+    })
   }
   render(){
     return (
       <div className="App">
-        <Form handleInputRead = {this.handleInputRead}/>
+        <Form handleInput={this.handleInput} handleSubmitButon = {this.handleSubmitButon}/>
       </div>
       );
   }
